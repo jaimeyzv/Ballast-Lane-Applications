@@ -9,10 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\02. Application\Tech.Interview.Application\Tech.Interview.Application.csproj" />
     <ProjectReference Include="..\..\03. Infrastructure\Tech.Interview.Infrastructure\Tech.Interview.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\..\Tech.Interview.Persistence\Tech.Interview.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

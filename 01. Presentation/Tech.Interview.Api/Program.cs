@@ -1,5 +1,9 @@
 using AutoMapper;
+using Tech.Interview.Application.Persistence;
+using Tech.Interview.Application.Persistence.UoW;
 using Tech.Interview.Infrastructure.Mapper;
+using Tech.Interview.Persistence.Repositories;
+using Tech.Interview.Persistence.UoW;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 
 // AutoMapper
 var config = new MapperConfiguration(cfg =>

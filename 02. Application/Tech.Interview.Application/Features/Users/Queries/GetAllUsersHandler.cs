@@ -15,9 +15,18 @@ namespace Tech.Interview.Application.Features.Users.Queries
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public Task<IEnumerable<GetAllUsersModelResult>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<GetAllUsersModelResult>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            using (var context = _unitOfWork.Create())
+            {
+                var userEntities = await context.Repositories.UserRepository.GetAllUsersAsync();
+
+                var models = userEntities
+                    .Select(x => _mapper.Map<GetAllUsersModelResult>(x))
+                    .ToList();
+
+                return models;
+            }
         }
     }
 }
