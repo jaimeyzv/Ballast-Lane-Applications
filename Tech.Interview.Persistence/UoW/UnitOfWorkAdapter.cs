@@ -35,9 +35,9 @@ namespace Tech.Interview.Persistence.UoW
             Repositories = null;
         }
 
-        public void SaveChanges()
+        public async Task SaveChangesAcync()
         {
-            _transaction.Commit();
+            await _transaction.CommitAsync();
         }
     }
 }

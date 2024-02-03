@@ -12,9 +12,15 @@ namespace Tech.Interview.Persistence.Repositories
             this._transaction = transaction;
         }
 
-        public Task<Guid> CreateUserAsync(User entity)
+        public async Task CreateUserAsync(User entity)
         {
-            throw new NotImplementedException();
+            var query = $"INSERT INTO  [dbo].[User](Name, Lastname, Age) " +
+                $"VALUES (@Name, @Lastname, @Age)";
+            var command = CreateCommand(query);
+            command.Parameters.AddWithValue("@Name", entity.Name);
+            command.Parameters.AddWithValue("@Lastname", entity.LastName);
+            command.Parameters.AddWithValue("@Age", entity.Age);
+            await command.ExecuteNonQueryAsync();
         }
 
         public async Task<IEnumerable<User>> GetAllUsersAsync()
@@ -22,7 +28,7 @@ namespace Tech.Interview.Persistence.Repositories
             var command = CreateCommand("SELECT * FROM [dbo].[User] WITH(NOLOCK)");
             var users = new List<User>();
 
-            using (var reader = command.ExecuteReader())
+            using (var reader = await command.ExecuteReaderAsync())
             {
                 while (reader.Read())
                 {
@@ -41,28 +47,40 @@ namespace Tech.Interview.Persistence.Repositories
             return users;
         }
 
-        public async Task<User> GetUserByIdAsync(Guid userId)
+        public async Task<User> GetUserByIdAsync(int userId)
         {
-            var command = CreateCommand("SELECT * FROM [dbo].[User] WITH(NOLOCK) WHERE id = @userId");
+            var command = CreateCommand("SELECT * FROM [dbo].[User] WITH(NOLOCK) WHERE UserId = @UserId");
+            command.Parameters.AddWithValue("@UserId", userId);
 
-            command.Parameters.AddWithValue("@userId", userId);
-
-            using (var reader = command.ExecuteReader())
+            using (var reader = await command.ExecuteReaderAsync())
             {
-                reader.Read();
-
-                return new User
+                while (reader.Read())
                 {
-                    Name = reader["name"].ToString(),
-                    LastName = reader["id"].ToString(),
-                    Age = Convert.ToInt32(reader["price"])                    
-                };
+                    return new User
+                    {
+                        Id = Convert.ToInt32(reader["UserId"]),
+                        Name = reader["Name"].ToString(),
+                        LastName = reader["Lastname"].ToString(),
+                        Age = Convert.ToInt32(reader["Age"])
+                    };
+                }
             }
+
+            return null;
         }
 
-        public Task<bool> UpdateUserAsync(Guid userId)
+        public async Task UpdateUserAsync(User entity)
         {
-            throw new NotImplementedException();
+            var query = $"UPDATE [dbo].[User]" +
+                $" SET Name = @Name, Lastname = @Lastname, Age = @Age" +
+                $" WHERE UserId = @userId ";
+            var command = CreateCommand(query);
+            command.Parameters.AddWithValue("@Name", entity.Name);
+            command.Parameters.AddWithValue("@Lastname", entity.LastName);
+            command.Parameters.AddWithValue("@Age", entity.Age);
+            command.Parameters.AddWithValue("@UserId", entity.Id);
+
+            await command.ExecuteNonQueryAsync();
         }
     }
 }

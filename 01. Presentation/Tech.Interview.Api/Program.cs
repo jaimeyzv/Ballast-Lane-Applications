@@ -1,6 +1,7 @@
 using AutoMapper;
 using MediatR;
 using System.Reflection;
+using Tech.Interview.Application.Features.Users.Commands;
 using Tech.Interview.Application.Features.Users.Queries;
 using Tech.Interview.Application.Persistence.UoW;
 using Tech.Interview.Infrastructure.Mapper;
@@ -16,11 +17,12 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
-//builder.Services.AddTransient<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IRequestHandler<GetAllUsersQuery, IEnumerable<GetAllUsersModelResult>>, GetAllUsersHandler>();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IRequestHandler<GetAllUsersQuery, IEnumerable<GetAllUsersModelResult>>, GetAllUsersHandler>();
+builder.Services.AddScoped<IRequestHandler<GetUserByIdQuery, GetUserByIdModelResult>, GetUserByIdHandler>();
+builder.Services.AddScoped<IRequestHandler<CreateUserCommand, bool>, CreateUserHandler>();
+builder.Services.AddScoped<IRequestHandler<UpdateUserCommand, bool>, UpdateUserHandler>();
 
 // AutoMapper
 var config = new MapperConfiguration(cfg =>

@@ -15,6 +15,7 @@ namespace Tech.Interview.Application.Features.Users.Queries
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
+
         public async Task<IEnumerable<GetAllUsersModelResult>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
             using (var context = _unitOfWork.Create())
