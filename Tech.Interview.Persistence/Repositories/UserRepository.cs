@@ -1,5 +1,5 @@
 ﻿using System.Data.SqlClient;
-using Tech.Interview.Application.Persistence;
+using Tech.Interview.Application.Persistence.Repositories;
 using Tech.Interview.Domain.Entities;
 
 namespace Tech.Interview.Persistence.Repositories

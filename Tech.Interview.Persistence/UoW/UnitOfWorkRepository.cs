@@ -1,5 +1,5 @@
 ﻿using System.Data.SqlClient;
-using Tech.Interview.Application.Persistence;
+using Tech.Interview.Application.Persistence.Repositories;
 using Tech.Interview.Application.Persistence.UoW;
 using Tech.Interview.Persistence.Repositories;
 

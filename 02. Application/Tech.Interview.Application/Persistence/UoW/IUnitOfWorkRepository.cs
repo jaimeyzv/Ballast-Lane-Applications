@@ -1,4 +1,6 @@
-﻿namespace Tech.Interview.Application.Persistence.UoW
+﻿using Tech.Interview.Application.Persistence.Repositories;
+
+namespace Tech.Interview.Application.Persistence.UoW
 {
     public interface IUnitOfWorkRepository
     {
