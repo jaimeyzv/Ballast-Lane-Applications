@@ -8,5 +8,6 @@ namespace Tech.Interview.Application.Persistence
         Task<User> GetUserByIdAsync(int userId);
         Task CreateUserAsync(User entity);        
         Task UpdateUserAsync(User entity);
+        Task DeleteUserAsync(int userId);
     }
 }

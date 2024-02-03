@@ -82,5 +82,15 @@ namespace Tech.Interview.Persistence.Repositories
 
             await command.ExecuteNonQueryAsync();
         }
+
+        public async Task DeleteUserAsync(int userId)
+        {
+            var query = $"DELETE FROM [dbo].[User]" +
+                $" WHERE UserId = @userId ";
+            var command = CreateCommand(query);
+            command.Parameters.AddWithValue("@UserId", userId);
+
+            await command.ExecuteNonQueryAsync();
+        }
     }
 }

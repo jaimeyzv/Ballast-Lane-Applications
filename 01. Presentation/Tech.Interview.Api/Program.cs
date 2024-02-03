@@ -23,6 +23,7 @@ builder.Services.AddScoped<IRequestHandler<GetAllUsersQuery, IEnumerable<GetAllU
 builder.Services.AddScoped<IRequestHandler<GetUserByIdQuery, GetUserByIdModelResult>, GetUserByIdHandler>();
 builder.Services.AddScoped<IRequestHandler<CreateUserCommand, bool>, CreateUserHandler>();
 builder.Services.AddScoped<IRequestHandler<UpdateUserCommand, bool>, UpdateUserHandler>();
+builder.Services.AddScoped<IRequestHandler<DeleteUserCommand, bool>, DeleteUserHandler>();
 
 // AutoMapper
 var config = new MapperConfiguration(cfg =>

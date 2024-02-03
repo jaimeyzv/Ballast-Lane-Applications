@@ -49,13 +49,23 @@ namespace Tech.Interview.Api.Controllers
             [FromBody] UpdateUserViewModel viewModel)
         {
             var userModel = await _mediator.Send(new GetUserByIdQuery(userId));
-
             if(userModel == null)
                 return BadRequest($"User with id {userId} does not exist. Resource can not be updated");
            
             var commandModel = _mapper.Map<UpdateUserCommand>(viewModel);
             commandModel.Id = userId;
             var result = await _mediator.Send(commandModel);
+            return Ok(result);
+        }
+
+        [HttpDelete("{userId}")]
+        public async Task<IActionResult> DeleteUserAsync([FromRoute] int userId)
+        {
+            var userModel = await _mediator.Send(new GetUserByIdQuery(userId));
+            if (userModel == null)
+                return BadRequest($"User with id {userId} does not exist. Resource can not be deleted");
+
+            var result = await _mediator.Send(new DeleteUserCommand(userId));
             return Ok(result);
         }
     }
