@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using Tech.Interview.Application.Persistence.UoW;
+using Tech.Interview.Application.Services;
 using Tech.Interview.Domain.Entities;
 
-namespace Tech.Interview.Application.Services
+namespace Tech.Interview.Service
 {
     public class UserService : IUserService
     {

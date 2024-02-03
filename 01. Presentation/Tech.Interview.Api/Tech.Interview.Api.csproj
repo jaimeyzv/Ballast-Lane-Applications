@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\02. Application\Tech.Interview.Application\Tech.Interview.Application.csproj" />
     <ProjectReference Include="..\..\03. Infrastructure\Tech.Interview.Infrastructure\Tech.Interview.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\03. Infrastructure\Tech.Interview.Service\Tech.Interview.Service.csproj" />
     <ProjectReference Include="..\..\Tech.Interview.Persistence\Tech.Interview.Persistence.csproj" />
   </ItemGroup>
 

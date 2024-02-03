@@ -4,6 +4,7 @@ using Tech.Interview.Application.Persistence.UoW;
 using Tech.Interview.Application.Services;
 using Tech.Interview.Infrastructure.Mapper;
 using Tech.Interview.Persistence.UoW;
+using Tech.Interview.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 

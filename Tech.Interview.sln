@@ -13,13 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00. Tests", "00. Tests", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tech.Interview.Application", "02. Application\Tech.Interview.Application\Tech.Interview.Application.csproj", "{2C7728DC-E56C-49DC-AE3D-FF9573F6BE71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tech.Interview.Domain", "02. Application\Tech.Interview.Domain\Tech.Interview.Domain.csproj", "{0BE4EC35-9E8F-4939-B075-7FB11368ABCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tech.Interview.Domain", "02. Application\Tech.Interview.Domain\Tech.Interview.Domain.csproj", "{0BE4EC35-9E8F-4939-B075-7FB11368ABCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tech.Interview.Infrastructure", "03. Infrastructure\Tech.Interview.Infrastructure\Tech.Interview.Infrastructure.csproj", "{06A8FE5E-D881-448C-A6CA-DF49485B28DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tech.Interview.Infrastructure", "03. Infrastructure\Tech.Interview.Infrastructure\Tech.Interview.Infrastructure.csproj", "{06A8FE5E-D881-448C-A6CA-DF49485B28DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tech.Interview.Api", "01. Presentation\Tech.Interview.Api\Tech.Interview.Api.csproj", "{662AE842-763B-4A37-88DA-21CD84C8CAF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tech.Interview.Api", "01. Presentation\Tech.Interview.Api\Tech.Interview.Api.csproj", "{662AE842-763B-4A37-88DA-21CD84C8CAF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tech.Interview.Persistence", "Tech.Interview.Persistence\Tech.Interview.Persistence.csproj", "{BE568988-87C8-4CEF-A24F-5057250A558D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tech.Interview.Persistence", "Tech.Interview.Persistence\Tech.Interview.Persistence.csproj", "{BE568988-87C8-4CEF-A24F-5057250A558D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tech.Interview.Service", "03. Infrastructure\Tech.Interview.Service\Tech.Interview.Service.csproj", "{E1C50C03-8A18-4071-AF34-83113C6E71B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{BE568988-87C8-4CEF-A24F-5057250A558D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE568988-87C8-4CEF-A24F-5057250A558D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE568988-87C8-4CEF-A24F-5057250A558D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1C50C03-8A18-4071-AF34-83113C6E71B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1C50C03-8A18-4071-AF34-83113C6E71B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1C50C03-8A18-4071-AF34-83113C6E71B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1C50C03-8A18-4071-AF34-83113C6E71B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{06A8FE5E-D881-448C-A6CA-DF49485B28DC} = {EF006382-F3F4-4933-85AA-E24C750C4C0F}
 		{662AE842-763B-4A37-88DA-21CD84C8CAF3} = {992FBACE-6CBB-41CB-B7B0-6ED337163BE3}
 		{BE568988-87C8-4CEF-A24F-5057250A558D} = {EF006382-F3F4-4933-85AA-E24C750C4C0F}
+		{E1C50C03-8A18-4071-AF34-83113C6E71B1} = {EF006382-F3F4-4933-85AA-E24C750C4C0F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4EBB93D-0788-40ED-93DF-D88AD69DA629}
