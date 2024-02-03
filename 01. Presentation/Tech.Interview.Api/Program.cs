@@ -1,8 +1,9 @@
 using AutoMapper;
-using Tech.Interview.Application.Persistence;
+using MediatR;
+using System.Reflection;
+using Tech.Interview.Application.Features.Users.Queries;
 using Tech.Interview.Application.Persistence.UoW;
 using Tech.Interview.Infrastructure.Mapper;
-using Tech.Interview.Persistence.Repositories;
 using Tech.Interview.Persistence.UoW;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +18,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
-builder.Services.AddTransient<IUserRepository, UserRepository>();
+//builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRequestHandler<GetAllUsersQuery, IEnumerable<GetAllUsersModelResult>>, GetAllUsersHandler>();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
 // AutoMapper
 var config = new MapperConfiguration(cfg =>

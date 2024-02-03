@@ -19,7 +19,7 @@ namespace Tech.Interview.Api.Controllers
             this._mapper = mapper;
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
             var result = await _mediator.Send(new GetAllUsersQuery());

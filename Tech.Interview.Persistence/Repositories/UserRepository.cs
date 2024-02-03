@@ -17,14 +17,33 @@ namespace Tech.Interview.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<User>> GetAllUsersAsync()
+        public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
-            throw new NotImplementedException();
+            var command = CreateCommand("SELECT * FROM [dbo].[User] WITH(NOLOCK)");
+            var users = new List<User>();
+
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var user = new User
+                    {
+                        Id = Convert.ToInt32(reader["UserId"]),
+                        Name = reader["Name"].ToString(),
+                        LastName = reader["Lastname"].ToString(),
+                        Age = Convert.ToInt32(reader["Age"])
+                    };
+
+                    users.Add(user);
+                }
+            }
+
+            return users;
         }
 
         public async Task<User> GetUserByIdAsync(Guid userId)
         {
-            var command = CreateCommand("SELECT * FROM Users WITH(NOLOCK) WHERE id = @userId");
+            var command = CreateCommand("SELECT * FROM [dbo].[User] WITH(NOLOCK) WHERE id = @userId");
 
             command.Parameters.AddWithValue("@userId", userId);
 
