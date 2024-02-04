@@ -85,7 +85,7 @@ public class Tests
     }
 
     [Test]
-    public async Task GetUserByIdAsync_WhenRequestIsInvalidDueUserDoesnotExist_ReturnsNotFound()
+    public async Task GetUserByIdAsync_WhenRequestIsInvalidDueUserDoesnotExist_ReturnsNotFoundObjectResult()
     {
         //Arrange
         User user = null;
@@ -97,10 +97,10 @@ public class Tests
 
         //Act
         var result = await _userController.GetUserByIdAsync(100);
-        var okResult = result as NotFoundResult;
+        var okResult = result as NotFoundObjectResult;
 
         //Assert
-        Assert.That(okResult, Is.TypeOf<NotFoundResult>());
+        Assert.That(okResult, Is.TypeOf<NotFoundObjectResult>());
         Assert.That(okResult.StatusCode, Is.EqualTo(404));
     }
 

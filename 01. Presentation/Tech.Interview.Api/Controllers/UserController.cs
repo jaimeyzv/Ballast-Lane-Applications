@@ -35,7 +35,7 @@ namespace Tech.Interview.Api.Controllers
         public async Task<IActionResult> GetUserByIdAsync([FromRoute] int userId)
         {
             var result = await this._userService.GetUserByIdAsync(userId);
-            if(result == null) return NotFound();
+            if(result == null) return NotFound($"User with identifier {userId} was not found.");
             var viewModel = _mapper.Map<GetUserByIdViewModel>(result);
             return Ok(viewModel);
         }
@@ -54,7 +54,7 @@ namespace Tech.Interview.Api.Controllers
         {
             var userModel = await this._userService.GetUserByIdAsync(userId);
             if (userModel == null)
-                return BadRequest($"User with id {userId} does not exist. Resource can not be updated");
+                return BadRequest($"User with id {userId} does not exist. Resource cannot be updated");
            
             var model = _mapper.Map<User>(viewModel);
             model.UserId = userId;
@@ -68,7 +68,7 @@ namespace Tech.Interview.Api.Controllers
         {
             var userModel = await this._userService.GetUserByIdAsync(userId);
             if (userModel == null)
-                return BadRequest($"User with id {userId} does not exist. Resource can not be deleted");
+                return BadRequest($"User with id {userId} does not exist. Resource cannot be deleted");
 
             await this._userService.DeleteUserAsync(userId);
             return Ok();
