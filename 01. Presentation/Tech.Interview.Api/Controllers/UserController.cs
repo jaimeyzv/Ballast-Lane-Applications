@@ -53,7 +53,7 @@ namespace Tech.Interview.Api.Controllers
                 return BadRequest($"User with id {userId} does not exist. Resource can not be updated");
            
             var model = _mapper.Map<User>(viewModel);
-            model.Id = userId;
+            model.UserId = userId;
             await this._userService.UpdateUserAsync(model);
 
             return Ok();

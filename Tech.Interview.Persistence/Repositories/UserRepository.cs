@@ -34,7 +34,7 @@ namespace Tech.Interview.Persistence.Repositories
                 {
                     var user = new User
                     {
-                        Id = Convert.ToInt32(reader["UserId"]),
+                        UserId = Convert.ToInt32(reader["UserId"]),
                         Name = reader["Name"].ToString(),
                         LastName = reader["Lastname"].ToString(),
                         Age = Convert.ToInt32(reader["Age"])
@@ -58,7 +58,7 @@ namespace Tech.Interview.Persistence.Repositories
                 {
                     return new User
                     {
-                        Id = Convert.ToInt32(reader["UserId"]),
+                        UserId = Convert.ToInt32(reader["UserId"]),
                         Name = reader["Name"].ToString(),
                         LastName = reader["Lastname"].ToString(),
                         Age = Convert.ToInt32(reader["Age"])
@@ -78,7 +78,7 @@ namespace Tech.Interview.Persistence.Repositories
             command.Parameters.AddWithValue("@Name", entity.Name);
             command.Parameters.AddWithValue("@Lastname", entity.LastName);
             command.Parameters.AddWithValue("@Age", entity.Age);
-            command.Parameters.AddWithValue("@UserId", entity.Id);
+            command.Parameters.AddWithValue("@UserId", entity.UserId);
 
             await command.ExecuteNonQueryAsync();
         }

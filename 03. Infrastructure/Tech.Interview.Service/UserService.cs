@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Tech.Interview.Application.Persistence.UoW;
+﻿using Tech.Interview.Application.Persistence.UoW;
 using Tech.Interview.Application.Services;
 using Tech.Interview.Domain.Entities;
 
@@ -8,13 +7,10 @@ namespace Tech.Interview.Service
     public class UserService : IUserService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
 
-        public UserService(IUnitOfWork unitOfWork,
-            IMapper mapper)
+        public UserService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _mapper = mapper;
         }
 
         public async Task CreateUserAsync(User entity)
