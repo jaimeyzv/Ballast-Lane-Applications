@@ -1,5 +1,6 @@
 using AutoMapper;
 using System.Reflection;
+using Tech.Interview.Api.Middlewares;
 using Tech.Interview.Application.Persistence.UoW;
 using Tech.Interview.Application.Services;
 using Tech.Interview.Infrastructure.Mapper;
@@ -42,5 +43,7 @@ app.MapControllers();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.Run();
