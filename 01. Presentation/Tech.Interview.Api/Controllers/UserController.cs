@@ -25,7 +25,10 @@ namespace Tech.Interview.Api.Controllers
         public async Task<IActionResult> GetAllUsersAsync()
         {
             var result = await this._userService.GetAllUsersAsync();
-            return Ok(result);
+            var viewModels = result
+                .Select(x => _mapper.Map<GetAllUsersViewModel>(x))
+                .ToList();
+            return Ok(viewModels);
         }
 
         [HttpGet("{userId}")]
@@ -33,7 +36,8 @@ namespace Tech.Interview.Api.Controllers
         {
             var result = await this._userService.GetUserByIdAsync(userId);
             if(result == null) return NotFound();
-            return Ok(result);
+            var viewModel = _mapper.Map<GetUserByIdViewModel>(result);
+            return Ok(viewModel);
         }
 
         [HttpPost]
@@ -41,7 +45,7 @@ namespace Tech.Interview.Api.Controllers
         {
             var model = _mapper.Map<User>(viewModel);
             await this._userService.CreateUserAsync(model);
-            return Ok();
+            return Created("", null);
         }
 
         [HttpPut("{userId}")]
