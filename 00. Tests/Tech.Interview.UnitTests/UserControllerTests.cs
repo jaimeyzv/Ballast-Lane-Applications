@@ -9,7 +9,7 @@ using Tech.Interview.Domain.Entities;
 
 namespace Tech.Interview.UnitTests;
 
-public class Tests
+public class UserControllerTests
 {
     private Mock<IUserService> _userServiceMock;
     private Mock<IMapper> _mapperMock;
@@ -125,6 +125,28 @@ public class Tests
     }
 
     [Test]
+    public async Task CreateUserAsync_WhenInternalErrorOccurs_ThrowsException()
+    {
+        //Arrange
+        var expectedException = new Exception("Internal error on creating");
+        this._mapperMock
+            .Setup(x => x.Map<User>(It.IsAny<CreateUserViewModel>()))
+            .Returns(new User());
+        this._userServiceMock
+            .Setup(x => x.CreateUserAsync(It.IsAny<User>()))
+            .ThrowsAsync(expectedException);
+
+        _userController = new UserController(_userServiceMock.Object, _mapperMock.Object);
+
+        //Act
+        var error = Assert.ThrowsAsync<Exception>(() => _userController.CreateUserAsync(new CreateUserViewModel()));
+
+        //Assert
+        Assert.That(error, Is.TypeOf<Exception>());
+        Assert.That(error.Message, Is.Not.Empty);
+    }
+
+    [Test]
     public async Task UpdateUserAsync_WhenRequestIsValid_ReturnsOkResult()
     {
         //Arrange
@@ -168,6 +190,31 @@ public class Tests
     }
 
     [Test]
+    public async Task UpdateUserAsync_WhenInternalErrorOccurs_ThrowsException()
+    {
+        //Arrange
+        var expectedException = new Exception("Internal error on updating");
+        this._userServiceMock
+           .Setup(x => x.GetUserByIdAsync(It.IsAny<int>()))
+           .ReturnsAsync(new User());
+        this._mapperMock
+            .Setup(x => x.Map<User>(It.IsAny<UpdateUserViewModel>()))
+            .Returns(new User());
+        this._userServiceMock
+            .Setup(x => x.UpdateUserAsync(It.IsAny<User>()))
+            .ThrowsAsync(expectedException);
+
+        _userController = new UserController(_userServiceMock.Object, _mapperMock.Object);
+
+        //Act
+        var error = Assert.ThrowsAsync<Exception>(() => _userController.UpdateUserAsync(It.IsAny<int>(), new UpdateUserViewModel()));
+
+        //Assert
+        Assert.That(error, Is.TypeOf<Exception>());
+        Assert.That(error.Message, Is.Not.Empty);
+    }
+
+    [Test]
     public async Task DeleteUserAsync_WhenRequestIsValid_ReturnsOkResult()
     {
         //Arrange
@@ -205,6 +252,28 @@ public class Tests
         //Assert
         Assert.That(okResult, Is.TypeOf<BadRequestObjectResult>());
         Assert.That(okResult.StatusCode, Is.EqualTo(400));
+    }
+
+    [Test]
+    public async Task DeleteUserAsync_WhenInternalErrorOccurs_ThrowsException()
+    {
+        //Arrange
+        var expectedException = new Exception("Internal error on deleting");
+        this._userServiceMock
+           .Setup(x => x.GetUserByIdAsync(It.IsAny<int>()))
+           .ReturnsAsync(new User());
+        this._userServiceMock
+            .Setup(x => x.DeleteUserAsync(It.IsAny<int>()))
+            .ThrowsAsync(expectedException);
+
+        _userController = new UserController(_userServiceMock.Object, _mapperMock.Object);
+
+        //Act
+        var error = Assert.ThrowsAsync<Exception>(() => _userController.DeleteUserAsync(It.IsAny<int>()));
+
+        //Assert
+        Assert.That(error, Is.TypeOf<Exception>());
+        Assert.That(error.Message, Is.Not.Empty);
     }
 
     #region Private
